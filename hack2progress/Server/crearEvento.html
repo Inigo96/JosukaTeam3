@@ -5,7 +5,7 @@
 <style>
 
 body {
-    background-image: url(http://96bda424cfcc34d9dd1a-0a7f10f87519dba22d2dbc6233a731e5.r41.cf2.rackcdn.com/mytest/media/running-573762.);
+    background-image: url(http://www.siue.edu/~mhallor/madisonrobertsphotography1/website-background.jpg);
 }
 
 </style> 
@@ -15,14 +15,21 @@ h1 {
     text-align: center;
     font-size:40px;
 }
-
 </style> 
+   
+
+<h1>
+Crear evento
+</h1>
+
+
 <style> 
 table {
      color: white;
     text-align: left;
      font-family: "Arial";
-     font-size:16px;
+     font-size:22px;
+     resize: none;
 }
 </style> 
 <style> 
@@ -30,7 +37,8 @@ td {
      color: white;
     text-align: left;
      font-family: "Arial";
-     font-size:13px;
+     font-size:22px;
+     resize: none;
 }
 
 </style> 
@@ -39,7 +47,8 @@ textarea {
      color: black;
     text-align: left;
      font-family: "Arial";
-     font-size:12px;
+     font-size:14px;
+     resize: none;
 }
 </style> 
 <style> 
@@ -47,39 +56,60 @@ tr {
      color: black;
     text-align: left;
      font-family: "Arial";
-     font-size:12px;
+     font-size:14px;
+     resize: none;
 }
 
 
 
+</style>
+<style>
+td {
+   
+  resize: none;
+  
+    
+}
 </style>
 <style> 
 input  {
     color: blue ;
     font-size:15px;
+    resize: none;
 }
+   
 
-input[type=submit] {
-    align:c
-    height: 100px;
-    width: 60px;
-    
-}
 
 
 </style>
 <style> 
 div  {
-    color: back ;
-    font-size:15px;
+    color: white ;
+    font-size:22px;
+    resize: none;
 }
 
 
 
 </style><style> 
 b  {
-    color: black ;
-    font-size:15px;
+    color: white ;
+    font-size:22px;
+    resize: none;
+}
+
+
+
+
+
+#boton{
+    color: Black ;
+    font-size:41px;
+    width:130px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+
 }
 
 
@@ -87,7 +117,7 @@ b  {
 </style>
 
 
-<h1>Crear evento</h1>
+
 
 <form action="/result" id="/result" method="post">
 	<table>
@@ -111,7 +141,7 @@ b  {
 			</tr>
 	</table>
 		<br>
-		<textarea cols="75" rows="2" name="nombreEvent" maxlength="200">Nombre evento</textarea>
+		<textarea cols="75" rows="2" name="" maxlength="200">Nombre evento</textarea>
 		<br>
 	<table>
 		<tr>
@@ -119,7 +149,7 @@ b  {
 			<td align ="left"><input type="number" name="timeDia"/>
 			<td align="right">Fecha mes<td>
 			<td align ="left"><input type="number" name="timeMes"/>
-			<td align="right">Fecha anyo<td>
+			<td align="right">Fecha año<td>
 			<td align ="left"><input type="number" name="timeAnyo"/>
 			</tr>
 			<tr>
@@ -133,21 +163,27 @@ b  {
 			<td align ="left"><input type="number" name="timeFinHora"/>
 			<td align="right">Minuto fin<td>
 			<td align ="left"><input type="number" name="timeFinMin"/>
+	
 		</tr>
-	</table>
+	    </table>
 		<br>
-		<textarea cols="75" rows="2" name="localizacionX" step="any" maxlength="200">Coordenadas de evento latitud</textarea>
+		<table>
+		<td align="right">Precio<td>
+		<td align ="left"><input type="number" name="precio"/>
 		<br>
-		<textarea cols="75" rows="2" name="localizacionY" step="any" maxlength="200">Coordenadas de evento longitud</textarea>
+		</table>
+		<textarea cols="75" rows="2" name="localizacionX" maxlength="200">Coordenadas de evento latitud</textarea>
+		<br>
+		<textarea cols="75" rows="2" name="localizacionY" maxlength="200">Coordenadas de evento longitud</textarea>
 		<br>
 		<textarea cols="75" rows="2" name="localizacionDir" maxlength="200">Direccion evento</textarea>
 		<br>
 		<textarea cols="100" rows="4" name="material" maxlength="1000">Introducir material a utilizar</textarea>
 		<br>
-		<td align="right">Precio<td>
-			<td align ="left"><input type="number" name="precio"/>
+	<br>
 		<br>
-		<td><input value="enviar" type="submit" /></td>
+		<td>
+		<input value="enviar" id="boton" type="submit" /> </td>
 		</form>
 		 
 <head>
