@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+
+body {
+    background-image: url(http://96bda424cfcc34d9dd1a-0a7f10f87519dba22d2dbc6233a731e5.r41.cf2.rackcdn.com/mytest/media/running-573762.);
+}
+
+</style> 
+<style> 
+h1 {
+    color: white;
+    text-align: center;
+    font-size:40px;
+}
+
+</style> 
+<style> 
+table {
+     color: white;
+    text-align: left;
+     font-family: "Arial";
+     font-size:16px;
+}
+</style> 
+<style> 
+td {
+     color: white;
+    text-align: left;
+     font-family: "Arial";
+     font-size:13px;
+}
+
+</style> 
+<style> 
+textarea {
+     color: black;
+    text-align: left;
+     font-family: "Arial";
+     font-size:12px;
+}
+</style> 
+<style> 
+tr {
+     color: black;
+    text-align: left;
+     font-family: "Arial";
+     font-size:12px;
+}
+
+
+
+</style>
+<style> 
+input  {
+    color: blue ;
+    font-size:15px;
+}
+
+input[type=submit] {
+    align:c
+    height: 100px;
+    width: 60px;
+    
+}
+
+
+</style>
+<style> 
+div  {
+    color: back ;
+    font-size:15px;
+}
+
+
+
+</style><style> 
+b  {
+    color: black ;
+    font-size:15px;
+}
+
+
+
+</style>
+
+
+<h1>Crear evento</h1>
+
+<form action="/result" id="/result" method="post">
+	<table>
+		<tr>
+			<td align="right">Nombre Deporte:<td>
+			<td align ="left"><select name="deporte">
+			<option selected="selected" value ="futbol">Futbol</option>
+			<option value ="running">Running</option>
+			<option value ="tenis">Tenis</option>
+			<option value ="beisbol">Beisbol</option>
+			<option value ="boxeo">Boxeo</option>
+			<option value ="natacion">Natacion</option>
+			<option value ="voleibol">Voleibol</option>
+			<option value ="balonmano">Balonmano</option>
+			<option value ="rugby">Rugby</option>
+			<option value ="hockey">Hockey</option>
+			<option value ="badminton">Badminton</option>
+			<option value ="golf">Golf</option>
+			<option value ="ciclismo">Ciclismo</option>
+			<option value ="padel">Padel</option>
+			</tr>
+	</table>
+		<br>
+		<textarea cols="75" rows="2" name="nombreEvent" maxlength="200">Nombre evento</textarea>
+		<br>
+	<table>
+		<tr>
+			<td align="right">Fecha dia<td>
+			<td align ="left"><input type="number" name="timeDia"/>
+			<td align="right">Fecha mes<td>
+			<td align ="left"><input type="number" name="timeMes"/>
+			<td align="right">Fecha anyo<td>
+			<td align ="left"><input type="number" name="timeAnyo"/>
+			</tr>
+			<tr>
+			<td align="right">Hora inicio<td>
+			<td align ="left"><input type="number" name="timeIniHora"/>
+			<td align="right">Minuto inicio<td>
+			<td align ="left"><input type="number" name="timeIniMin"/>
+			</tr>
+			<tr>
+			<td align="right">Hora fin<td>
+			<td align ="left"><input type="number" name="timeFinHora"/>
+			<td align="right">Minuto fin<td>
+			<td align ="left"><input type="number" name="timeFinMin"/>
+		</tr>
+	</table>
+		<br>
+		<textarea cols="75" rows="2" name="localizacionX" step="any" maxlength="200">Coordenadas de evento latitud</textarea>
+		<br>
+		<textarea cols="75" rows="2" name="localizacionY" step="any" maxlength="200">Coordenadas de evento longitud</textarea>
+		<br>
+		<textarea cols="75" rows="2" name="localizacionDir" maxlength="200">Direccion evento</textarea>
+		<br>
+		<textarea cols="100" rows="4" name="material" maxlength="1000">Introducir material a utilizar</textarea>
+		<br>
+		<td align="right">Precio<td>
+			<td align ="left"><input type="number" name="precio"/>
+		<br>
+		<td><input value="enviar" type="submit" /></td>
+		</form>
+		 
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+var geocoder = new google.maps.Geocoder();
+
+function geocodePosition(pos) {
+  geocoder.geocode({
+    latLng: pos
+  }, function(responses) {
+    if (responses && responses.length > 0) {
+      updateMarkerAddress(responses[0].formatted_address);
+    } else {
+      updateMarkerAddress('Cannot determine address at this location.');
+    }
+  });
+}
+
+function updateMarkerStatus(str) {
+  document.getElementById('markerStatus').innerHTML = str;
+}
+
+function updateMarkerPosition(latLng) {
+  document.getElementById('info').innerHTML = [
+    latLng.lat(),
+    latLng.lng()
+  ].join(', ');
+  
+  
+}
+
+function updateMarkerAddress(str) {
+  document.getElementById('address').innerHTML = str;
+}
+
+function initialize() {
+  var latLng = new google.maps.LatLng(43.468802, -3.766233);
+  var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+    zoom: 8,
+    center: latLng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  var marker = new google.maps.Marker({
+    position: latLng,
+    title: 'Point A',
+    map: map,
+    draggable: true
+  });
+
+  // Update current position info.
+  updateMarkerPosition(latLng);
+  geocodePosition(latLng);
+
+  // Add dragging event listeners.
+  google.maps.event.addListener(marker, 'dragstart', function() {
+    updateMarkerAddress('Dragging...');
+    
+  });
+
+  google.maps.event.addListener(marker, 'drag', function() {
+    updateMarkerStatus('Dragging...');
+    updateMarkerPosition(marker.getPosition());
+  });
+
+  google.maps.event.addListener(marker, 'dragend', function() {
+    updateMarkerStatus('Drag ended');
+    geocodePosition(marker.getPosition());
+  });
+}
+
+
+// Onload handler to fire off the app.
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+<body>
+  <style>
+  #mapCanvas {
+    width: 500px;
+    height: 400px;
+    float: left;
+  }
+  #infoPanel {
+    float: left;
+    margin-left: 10px;
+  }
+  #infoPanel div {
+    margin-bottom: 5px;
+  }
+  </style>
+
+  <div id="mapCanvas"></div>
+  <div id="infoPanel">
+    <b>Estado del marcador:</b>
+    <div id="markerStatus"><i>Arrastra el marcador hasta la ubicacion del evento.</i></div>
+    <b>Posicion actual:</b>
+    <div id="info"></div>
+    <b>Direccion mas cercana:</b>
+    <div id="address"></div>
+  </div>
+</body>
